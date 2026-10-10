@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <title>Sample Studio — HTML hosting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="/"><span class="brand-mark"><i></i><i></i><i></i></span><span>sample<span class="brand-light">studio</span></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav-item active" href="/"><span class="nav-icon">⌂</span> Overview</a>
+      <a class="nav-item" href="#samples"><span class="nav-icon">▧</span> All samples <span class="nav-count" id="nav-count">0</span></a>
+      <div class="sidebar-bottom"><div class="storage-icon">↗</div><div><strong>Your previews, live.</strong><p>Share a URL for every HTML sample you upload.</p></div></div>
+      <div class="profile"><div class="avatar">S</div><div><strong>Studio workspace</strong><small>Personal plan</small></div><span class="dots">···</span></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><div class="crumb">Workspace <span>/</span> <strong>Overview</strong></div><div class="top-actions"><span class="status-dot"></span> All systems operational <span class="help">?</span></div></header>
+      <section class="welcome"><div><div class="eyebrow"><span class="sparkle">✳</span> YOUR HTML, READY TO SHARE</div><h1>Good work deserves<br><span>a great showcase.</span></h1><p class="intro">Upload an HTML file and get a clean, shareable link in seconds.</p></div><div class="welcome-art" aria-hidden="true"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-window"><div class="art-bar"><b></b><b></b><b></b><span>your-sample.html</span></div><div class="art-lines"><i></i><i></i><i></i><i></i><i></i></div><div class="art-card"></div></div><div class="art-star">✦</div></div></section>
+
+      <section class="content-grid">
+        <div class="panel upload-panel">
+          <div class="panel-heading"><div><div class="step-label">01 <span>·</span> NEW DEPLOYMENT</div><h2>Publish a sample</h2><p>Set a home for your HTML file.</p></div><div class="heading-icon">↥</div></div>
+          <div id="notice" class="notice" hidden></div>
+          <form action="/upload" method="post" enctype="multipart/form-data" id="upload-form">
+            <div class="field-row">
+              <label class="field"><span>Site name</span><div class="input-wrap"><span class="input-prefix">⌘</span><input name="siteName" placeholder="e.g. spring-campaign" required pattern="[A-Za-z0-9 _-]+" maxlength="60"><span class="field-check">↗</span></div><small>Your project or brand name</small></label>
+              <label class="field"><span>Sample number</span><div class="input-wrap"><span class="input-prefix">#</span><input name="sampleNumber" placeholder="e.g. 01" required pattern="[A-Za-z0-9 _-]+" maxlength="40"><span class="field-check">↗</span></div><small>A version or sample label</small></label>
+            </div>
+            <div class="field file-field"><span>HTML file</span><label class="drop-zone" id="drop-zone" for="html-file"><input id="html-file" name="htmlFile" type="file" accept=".html,.htm,text/html" required><span class="upload-symbol">↑</span><span class="drop-title" id="file-title">Drop your file here, or <b>browse</b></span><span class="drop-caption" id="file-caption">HTML only · up to 5 MB</span></label></div>
+            <div class="form-footer"><div class="secure-note"><span>⌑</span> Your file is hosted privately by URL</div><button class="submit-button" type="submit"><span>Publish sample</span><span class="button-arrow">↗</span></button></div>
+          </form>
+        </div>
+
+        <aside class="url-panel"><div class="url-panel-top"><div class="url-icon">⌁</div><div class="step-label">YOUR LINK STRUCTURE</div></div><h3>Simple to find.<br>Easy to share.</h3><p>Every upload gets a predictable URL that you can send to anyone.</p><div class="url-example"><div class="url-label">YOUR SAMPLE URL</div><div class="url-code"><span>yourdomain.com</span><em>/</em><b>site-name</b><em>/</em><b>01</b></div><div class="url-arrow">↗</div></div><div class="url-foot"><span class="mini-check">✓</span> Served as a regular web page</div><div class="deco-circle"></div></aside>
+      </section>
+
+      <section class="samples-section" id="samples"><div class="section-title"><div><div class="step-label">02 <span>·</span> YOUR LIBRARY</div><h2>Recent samples <span id="sample-total">0</span></h2></div><div class="sample-controls"><span class="live-indicator"><i></i> LIVE</span></div></div><div id="sample-list" class="sample-list"><div class="empty-state"><div class="empty-visual"><span>▱</span><i>↗</i></div><strong>Your next great thing goes here.</strong><p>Upload your first HTML sample to see it in your library.</p><a href="#upload-form">Create your first sample <span>↗</span></a></div></div></section>
+      <footer><span>Made for the details.</span><span>Sample Studio <b>·</b> HTML preview hosting</span></footer>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
