@@ -41,7 +41,7 @@ const storage = multer.diskStorage({
     const sample = safeSegment(req.body.sampleNumber);
     if (!site || !sample) return callback(new Error('Enter a valid site name and sample number.'));
     req.samplePath = path.join(UPLOADS_DIR, site, sample);
-    fs.mkdir(req.samplePath, { recursive: true }, callback);
+    fs.mkdir(req.samplePath, { recursive: true }, (error) => callback(error, req.samplePath));
   },
   filename(req, file, callback) {
     // Keep the current published page intact until the replacement is ready.
