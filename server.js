@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -43,7 +44,8 @@ const storage = multer.diskStorage({
     fs.mkdir(req.samplePath, { recursive: true }, callback);
   },
   filename(req, file, callback) {
-    callback(null, 'index.html');
+    // Keep the current published page intact until the replacement is ready.
+    callback(null, `.upload-${crypto.randomUUID()}.tmp`);
   }
 });
 
@@ -68,7 +70,15 @@ app.post('/upload', (req, res) => {
     if (!req.file) return res.redirect('/?error=Choose an HTML file to upload.');
     const site = safeSegment(req.body.siteName);
     const sample = safeSegment(req.body.sampleNumber);
-    res.redirect(`/?success=${encodeURIComponent(`/${site}/${sample}/`)}`);
+    const publishedFile = path.join(req.samplePath, 'index.html');
+    fs.rename(req.file.path, publishedFile, (renameError) => {
+      if (renameError) {
+        fs.unlink(req.file.path, () => {});
+        console.error(renameError.message);
+        return res.redirect(`/?error=${encodeURIComponent('The upload could not be published. Please try again.')}`);
+      }
+      res.redirect(`/?success=${encodeURIComponent(`/${site}/${sample}/`)}`);
+    });
   });
 });
 
